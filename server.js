@@ -105,6 +105,36 @@ var SampleApp = function() {
             res.send("<html><body><img src='" + link + "'></body></html>");
         };
 
+        self.routes['/mysql'] = function(req, res) {
+            try {
+                var mysql_factory   = require('./mysql_factory');
+                mysql_factory.response(req, res);
+            }
+            catch(e) {
+                res.send(e.message);
+            }
+        };
+
+        self.routes['/postgresql'] = function(req, res) {
+            try {
+                var postgresql_factory   = require('./postgresql_factory');
+                postgresql_factory.response(req, res);
+            }
+            catch(e) {
+                res.send(e.message);
+            }
+        };
+
+        self.routes['/mongodb'] = function(req, res) {
+            try {
+                var mongodb_factory   = require('./mongodb_factory');
+                mongodb_factory.response(req, res);
+            }
+            catch(e) {
+                res.send(e.message);
+            }
+        };
+
         self.routes['/'] = function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
